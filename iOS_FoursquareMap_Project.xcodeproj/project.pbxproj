@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EB7237373A10015315A /* AppDelegate.swift */; };
 		ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EB9237373A10015315A /* SceneDelegate.swift */; };
-		ECC05EBC237373A10015315A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EBB237373A10015315A /* ViewController.swift */; };
 		ECC05EC1237373A20015315A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC05EC0237373A20015315A /* Assets.xcassets */; };
 		ECC05EC4237373A20015315A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC05EC2237373A20015315A /* LaunchScreen.storyboard */; };
 		ECC05ECF237373A20015315A /* iOS_FoursquareMap_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05ECE237373A20015315A /* iOS_FoursquareMap_ProjectTests.swift */; };
+		ECC05EDA237377980015315A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05ED9237377980015315A /* SearchVC.swift */; };
+		ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EDB237377B80015315A /* CollectionsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +30,14 @@
 		ECC05EB4237373A10015315A /* iOS_FoursquareMap_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FoursquareMap_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC05EB7237373A10015315A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC05EB9237373A10015315A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ECC05EBB237373A10015315A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ECC05EC0237373A20015315A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECC05EC3237373A20015315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ECC05EC5237373A20015315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECC05ECA237373A20015315A /* iOS_FoursquareMap_ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_FoursquareMap_ProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC05ECE237373A20015315A /* iOS_FoursquareMap_ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_FoursquareMap_ProjectTests.swift; sourceTree = "<group>"; };
 		ECC05ED0237373A20015315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECC05ED9237377980015315A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		ECC05EDB237377B80015315A /* CollectionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,7 @@
 			children = (
 				ECC05EB7237373A10015315A /* AppDelegate.swift */,
 				ECC05EB9237373A10015315A /* SceneDelegate.swift */,
-				ECC05EBB237373A10015315A /* ViewController.swift */,
+				ECC05EDD237377C90015315A /* Controllers */,
 				ECC05EC0237373A20015315A /* Assets.xcassets */,
 				ECC05EC2237373A20015315A /* LaunchScreen.storyboard */,
 				ECC05EC5237373A20015315A /* Info.plist */,
@@ -94,6 +96,15 @@
 				ECC05ED0237373A20015315A /* Info.plist */,
 			);
 			path = iOS_FoursquareMap_ProjectTests;
+			sourceTree = "<group>";
+		};
+		ECC05EDD237377C90015315A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ECC05ED9237377980015315A /* SearchVC.swift */,
+				ECC05EDB237377B80015315A /* CollectionsVC.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,8 +207,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECC05EBC237373A10015315A /* ViewController.swift in Sources */,
+				ECC05EDA237377980015315A /* SearchVC.swift in Sources */,
 				ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */,
+				ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */,
 				ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
