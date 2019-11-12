@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC413738237B400B0069C5F5 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413737237B400B0069C5F5 /* Secrets.swift */; };
+		EC41373A237B40720069C5F5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413739237B40720069C5F5 /* NetworkManager.swift */; };
+		EC41373D237B412F0069C5F5 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41373C237B412F0069C5F5 /* AppError.swift */; };
 		EC8077312379EC18003B6134 /* TO-DO in Resources */ = {isa = PBXBuildFile; fileRef = EC8077302379EC18003B6134 /* TO-DO */; };
 		EC8077332379F539003B6134 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8077322379F539003B6134 /* Venue.swift */; };
 		ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EB7237373A10015315A /* AppDelegate.swift */; };
@@ -29,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC413737237B400B0069C5F5 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		EC413739237B40720069C5F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		EC41373C237B412F0069C5F5 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		EC8077302379EC18003B6134 /* TO-DO */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TO-DO"; sourceTree = "<group>"; };
 		EC8077322379F539003B6134 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		ECC05EB4237373A10015315A /* iOS_FoursquareMap_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FoursquareMap_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC41373B237B41220069C5F5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EC413739237B40720069C5F5 /* NetworkManager.swift */,
+				EC41373C237B412F0069C5F5 /* AppError.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		EC8077342379F53D003B6134 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,8 +106,10 @@
 		ECC05EB6237373A10015315A /* iOS_FoursquareMap_Project */ = {
 			isa = PBXGroup;
 			children = (
+				EC413737237B400B0069C5F5 /* Secrets.swift */,
 				ECC05EB7237373A10015315A /* AppDelegate.swift */,
 				ECC05EB9237373A10015315A /* SceneDelegate.swift */,
+				EC41373B237B41220069C5F5 /* Networking */,
 				EC8077342379F53D003B6134 /* Models */,
 				EC8077302379EC18003B6134 /* TO-DO */,
 				ECC05EDD237377C90015315A /* Controllers */,
@@ -223,7 +240,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC05EDA237377980015315A /* SearchVC.swift in Sources */,
+				EC413738237B400B0069C5F5 /* Secrets.swift in Sources */,
 				EC8077332379F539003B6134 /* Venue.swift in Sources */,
+				EC41373A237B40720069C5F5 /* NetworkManager.swift in Sources */,
+				EC41373D237B412F0069C5F5 /* AppError.swift in Sources */,
 				ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */,
 				ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */,
 				ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */,
