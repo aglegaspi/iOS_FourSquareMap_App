@@ -13,15 +13,9 @@ enum HTTPMethod: String {
     case post
 }
 
-
-
-class NetworkHelper {
+class NetworkManager {
+    static let manager = NetworkManager()
     
-    // MARK: - Static Properties
-    
-    static let manager = NetworkHelper()
-    
-    // MARK: - Instance Methods
     func performDataTask(withUrl url: URL,
                          andHTTPBody body: Data? = nil,
                          andMethod httpMethod: HTTPMethod,
@@ -59,8 +53,6 @@ class NetworkHelper {
     }
     
     // MARK: - Private Properties and Initializers
-    
     private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
-    
     private init() {}
 }

@@ -1,26 +1,37 @@
-//
-//  SearchVC.swift
-//  iOS_FoursquareMap_Project
-//
-//  Created by Alex 6.1 on 11/6/19.
-//  Copyright © 2019 aglegaspi. All rights reserved.
-//
-
 import UIKit
-import CoreLocation
 import MapKit
+import CoreLocation
 
 class SearchVC: UIViewController {
     
-    var searchString: String? = nil {
+    private var venues = [Venue]() {
         didSet {
-            //mapView.addAnnotations(libraries.filter { $0.hasValidCoordinates })
+            drawAnnotationsOnMap(venues: venues)
         }
+    }
+    
+    private func drawAnnotationsOnMap(venues: [Venue]) {
+        let annotations = self.mapView.annotations
+        self.mapView.removeAnnotations(annotations)
+        let updatedAnnotations = venues.map(self.annotationsFromVenue)
+        self.mapView.addAnnotations(updatedAnnotations)
+    }
+    
+    private func annotationsFromVenue(_ venue: Venue) -> MKPointAnnotation {
+        let newAnnotation = MKPointAnnotation()
+        newAnnotation.coordinate = CLLocationCoordinate2D(latitude: venue.location?.lat ?? 40.6782, longitude: venue.location?.lng ?? -73.9442)
+        newAnnotation.title = venue.name
+        return newAnnotation
     }
     
     private let locationManager = CLLocationManager()
     
-    let initialLocation = CLLocation(latitude: 40.742054, longitude: -73.769417)
+    var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442) {
+        didSet {
+            self.loadVenues(query: self.searchBar.text ?? "", lat: self.currentLocation.latitude, long: self.currentLocation.latitude)
+        }
+    }
+    
     let searchRadius: CLLocationDistance = 2000
     
     //MARK: VIEWS
@@ -34,6 +45,7 @@ class SearchVC: UIViewController {
         var button = UIButton()
         button.backgroundColor = .systemGray2
         button.setImage(UIImage(named: "listview"), for: .normal)
+        button.addTarget(self, action: #selector(listViewButtonPressed), for: .touchDown)
         return button
     }()
     
@@ -44,8 +56,10 @@ class SearchVC: UIViewController {
     }()
     
     lazy var mapView: MKMapView = {
-        var mv = MKMapView()
-        return mv
+        let map = MKMapView()
+        map.mapType = .standard
+        map.showsUserLocation = true
+        return map
     }()
     
     
@@ -55,6 +69,7 @@ class SearchVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
         loadSubViews()
+        
         searchBar.delegate = self
         locationManager.delegate = self
         locationAuthorization()
@@ -62,8 +77,19 @@ class SearchVC: UIViewController {
     }
     
     
+    //MARK: PRIVATE FUNCTIONS
+    private func loadVenues(query: String, lat: Double, long: Double) {
+        VenueAPIHelper.manager.getVenues(query: query, lat: lat, long: long) { (result) in
+            switch result {
+            case .success(let venuesFromOnline):
+                self.venues = venuesFromOnline!
+                dump(self.venues)
+            case .failure(let error):
+                print("Could not load venues: \(error)")
+            }
+        }
+    }
     
-    // PRIVATE FUNCTIONS
     private func loadSubViews() {
         view.addSubview(searchBar)
         view.addSubview(listButton)
@@ -135,6 +161,14 @@ class SearchVC: UIViewController {
         ])
     }
     
+    //MARK: OBJC FUNCTIONS
+    @objc func listViewButtonPressed() {
+        let listView = ListVC()
+        listView.venues = self.venues
+        
+        present(listView, animated: true, completion: nil)
+    }
+    
 }
 
 
@@ -161,10 +195,6 @@ extension SearchVC: CLLocationManagerDelegate {
 //MARK: SEARCHBAR DELEGATE CONFORM
 extension SearchVC: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchString = searchText
-    }
-    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.showsCancelButton = true
         return true
@@ -188,28 +218,27 @@ extension SearchVC: UISearchBarDelegate {
         let activeSearch = MKLocalSearch(request: searchRequest)
         
         activeSearch.start { (response,error) in
+            
             activityIndicator.stopAnimating()
             
             if response == nil {
-                print(error)
+                print("\(String(describing: error))")
             } else {
-                let annotations = self.mapView.annotations
-                self.mapView.removeAnnotations(annotations)
+                
+                let lat = response?.boundingRegion.center.latitude ?? 40.6782
+                let long = response?.boundingRegion.center.longitude ?? -73.9442
+                
+                let newAnnotation = MKPointAnnotation()
+                newAnnotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                let coordinateRegion = MKCoordinateRegion.init(center: newAnnotation.coordinate, latitudinalMeters: self.searchRadius * 7.0, longitudinalMeters: self.searchRadius * 7.0)
+                
+                self.mapView.setRegion(coordinateRegion, animated: true)
+                
+                self.loadVenues(query: self.searchBar.text!, lat: lat, long: long)
             }
-            
-            let latitud = response?.boundingRegion.center.latitude
-            let longitud = response?.boundingRegion.center.longitude
-            
-            let newAnnotation = MKPointAnnotation()
-            newAnnotation.title = searchBar.text
-            newAnnotation.coordinate = CLLocationCoordinate2D(latitude: latitud!, longitude: longitud!)
-            self.mapView.addAnnotation(newAnnotation)
-            
-            // TO ZOOM IN THE ANNOTATION
-            let coordinateRegion = MKCoordinateRegion.init(center: newAnnotation.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
-            self.mapView.setRegion(coordinateRegion, animated: true)
         }
     }
-
+    
     
 }

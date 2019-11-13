@@ -1,11 +1,5 @@
-//
-//  Venue.swift
-//  iOS_FoursquareMap_Project
-//
-//  Created by Alex 6.1 on 11/11/19.
-//  Copyright © 2019 aglegaspi. All rights reserved.
-//
-
+import MapKit
+import CoreLocation
 import Foundation
 
 // MARK: - VenueWrapper
@@ -23,6 +17,17 @@ struct Venue: Codable {
     let id, name: String?
     let location: Location?
     let categories: [Category]?
+    
+    // DECODES JSON DATA FROM API CALL
+    static func getVenues(from data: Data) throws -> [Venue]? {
+        do {
+            let response = try JSONDecoder().decode(VenueWrapper.self,from: data)
+            return response.response?.venues
+        } catch {
+            return nil
+        }
+    }
+  
 }
 
 // MARK: - Category

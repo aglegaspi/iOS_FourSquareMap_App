@@ -10,7 +10,9 @@
 		EC413738237B400B0069C5F5 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413737237B400B0069C5F5 /* Secrets.swift */; };
 		EC41373A237B40720069C5F5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413739237B40720069C5F5 /* NetworkManager.swift */; };
 		EC41373D237B412F0069C5F5 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41373C237B412F0069C5F5 /* AppError.swift */; };
-		EC8077312379EC18003B6134 /* TO-DO in Resources */ = {isa = PBXBuildFile; fileRef = EC8077302379EC18003B6134 /* TO-DO */; };
+		EC41373F237B42B60069C5F5 /* VenueAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41373E237B42B60069C5F5 /* VenueAPIHelper.swift */; };
+		EC413743237B8B330069C5F5 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413742237B8B330069C5F5 /* ListVC.swift */; };
+		EC413745237B908E0069C5F5 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413744237B908E0069C5F5 /* ListViewCell.swift */; };
 		EC8077332379F539003B6134 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8077322379F539003B6134 /* Venue.swift */; };
 		ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EB7237373A10015315A /* AppDelegate.swift */; };
 		ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EB9237373A10015315A /* SceneDelegate.swift */; };
@@ -35,7 +37,9 @@
 		EC413737237B400B0069C5F5 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		EC413739237B40720069C5F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EC41373C237B412F0069C5F5 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
-		EC8077302379EC18003B6134 /* TO-DO */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TO-DO"; sourceTree = "<group>"; };
+		EC41373E237B42B60069C5F5 /* VenueAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueAPIHelper.swift; sourceTree = "<group>"; };
+		EC413742237B8B330069C5F5 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
+		EC413744237B908E0069C5F5 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
 		EC8077322379F539003B6134 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		ECC05EB4237373A10015315A /* iOS_FoursquareMap_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FoursquareMap_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC05EB7237373A10015315A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				EC413739237B40720069C5F5 /* NetworkManager.swift */,
+				EC41373E237B42B60069C5F5 /* VenueAPIHelper.swift */,
 				EC41373C237B412F0069C5F5 /* AppError.swift */,
 			);
 			path = Networking;
@@ -109,9 +114,9 @@
 				EC413737237B400B0069C5F5 /* Secrets.swift */,
 				ECC05EB7237373A10015315A /* AppDelegate.swift */,
 				ECC05EB9237373A10015315A /* SceneDelegate.swift */,
+				EC413744237B908E0069C5F5 /* ListViewCell.swift */,
 				EC41373B237B41220069C5F5 /* Networking */,
 				EC8077342379F53D003B6134 /* Models */,
-				EC8077302379EC18003B6134 /* TO-DO */,
 				ECC05EDD237377C90015315A /* Controllers */,
 				ECC05EC0237373A20015315A /* Assets.xcassets */,
 				ECC05EC2237373A20015315A /* LaunchScreen.storyboard */,
@@ -134,6 +139,7 @@
 			children = (
 				ECC05ED9237377980015315A /* SearchVC.swift */,
 				ECC05EDB237377B80015315A /* CollectionsVC.swift */,
+				EC413742237B8B330069C5F5 /* ListVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -219,7 +225,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC8077312379EC18003B6134 /* TO-DO in Resources */,
 				ECC05EC4237373A20015315A /* LaunchScreen.storyboard in Resources */,
 				ECC05EC1237373A20015315A /* Assets.xcassets in Resources */,
 			);
@@ -239,11 +244,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC413745237B908E0069C5F5 /* ListViewCell.swift in Sources */,
+				EC41373F237B42B60069C5F5 /* VenueAPIHelper.swift in Sources */,
 				ECC05EDA237377980015315A /* SearchVC.swift in Sources */,
 				EC413738237B400B0069C5F5 /* Secrets.swift in Sources */,
 				EC8077332379F539003B6134 /* Venue.swift in Sources */,
 				EC41373A237B40720069C5F5 /* NetworkManager.swift in Sources */,
 				EC41373D237B412F0069C5F5 /* AppError.swift in Sources */,
+				EC413743237B8B330069C5F5 /* ListVC.swift in Sources */,
 				ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */,
 				ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */,
 				ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */,
