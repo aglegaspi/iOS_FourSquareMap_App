@@ -13,6 +13,9 @@
 		EC41373F237B42B60069C5F5 /* VenueAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41373E237B42B60069C5F5 /* VenueAPIHelper.swift */; };
 		EC413743237B8B330069C5F5 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413742237B8B330069C5F5 /* ListVC.swift */; };
 		EC413745237B908E0069C5F5 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413744237B908E0069C5F5 /* ListViewCell.swift */; };
+		EC413747237C844E0069C5F5 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413746237C844E0069C5F5 /* ImageHelper.swift */; };
+		EC413749237C861B0069C5F5 /* ImageAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC413748237C861B0069C5F5 /* ImageAPIClient.swift */; };
+		EC41374B237C86BE0069C5F5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41374A237C86BE0069C5F5 /* Image.swift */; };
 		EC8077332379F539003B6134 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8077322379F539003B6134 /* Venue.swift */; };
 		ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EB7237373A10015315A /* AppDelegate.swift */; };
 		ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EB9237373A10015315A /* SceneDelegate.swift */; };
@@ -40,6 +43,9 @@
 		EC41373E237B42B60069C5F5 /* VenueAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueAPIHelper.swift; sourceTree = "<group>"; };
 		EC413742237B8B330069C5F5 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		EC413744237B908E0069C5F5 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
+		EC413746237C844E0069C5F5 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		EC413748237C861B0069C5F5 /* ImageAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAPIClient.swift; sourceTree = "<group>"; };
+		EC41374A237C86BE0069C5F5 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		EC8077322379F539003B6134 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		ECC05EB4237373A10015315A /* iOS_FoursquareMap_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_FoursquareMap_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC05EB7237373A10015315A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +83,8 @@
 			children = (
 				EC413739237B40720069C5F5 /* NetworkManager.swift */,
 				EC41373E237B42B60069C5F5 /* VenueAPIHelper.swift */,
+				EC413748237C861B0069C5F5 /* ImageAPIClient.swift */,
+				EC413746237C844E0069C5F5 /* ImageHelper.swift */,
 				EC41373C237B412F0069C5F5 /* AppError.swift */,
 			);
 			path = Networking;
@@ -86,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				EC8077322379F539003B6134 /* Venue.swift */,
+				EC41374A237C86BE0069C5F5 /* Image.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,10 +260,13 @@
 				EC8077332379F539003B6134 /* Venue.swift in Sources */,
 				EC41373A237B40720069C5F5 /* NetworkManager.swift in Sources */,
 				EC41373D237B412F0069C5F5 /* AppError.swift in Sources */,
+				EC41374B237C86BE0069C5F5 /* Image.swift in Sources */,
 				EC413743237B8B330069C5F5 /* ListVC.swift in Sources */,
+				EC413749237C861B0069C5F5 /* ImageAPIClient.swift in Sources */,
 				ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */,
 				ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */,
 				ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */,
+				EC413747237C844E0069C5F5 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,12 +4,9 @@ import CoreLocation
 
 class SearchVC: UIViewController {
     
-    private var venues = [Venue]() {
-        didSet {
-            drawAnnotationsOnMap(venues: venues)
-        }
-    }
+    private var venues = [Venue]() { didSet { drawAnnotationsOnMap(venues: venues) } }
     
+    //MARK: MAPVIEW FUNCTIONALITY
     private func drawAnnotationsOnMap(venues: [Venue]) {
         let annotations = self.mapView.annotations
         self.mapView.removeAnnotations(annotations)
@@ -172,7 +169,7 @@ class SearchVC: UIViewController {
 }
 
 
-// MARK: CLLocationManagerDelegate Conformance
+// MARK: LOCATION MANAGER CONFORMANCE
 extension SearchVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -192,7 +189,7 @@ extension SearchVC: CLLocationManagerDelegate {
     }
 }
 
-//MARK: SEARCHBAR DELEGATE CONFORM
+//MARK: SEARCHBAR DELEGATE CONFORMANCE
 extension SearchVC: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
