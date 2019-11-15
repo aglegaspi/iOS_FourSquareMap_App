@@ -14,7 +14,7 @@ struct ImageAPIHelper {
     
     static let manager = ImageAPIHelper()
     
-    func getPictureURL(venueID: String, completionHandler: @escaping (Result<[Image], AppError>) -> ()) {
+    func getPictureURL(venueID: String, completionHandler: @escaping (Result<Image, AppError>) -> ()) {
         let urlStr = "https://api.foursquare.com/v2/venues/\(venueID)/photos?client_id=\(apikey)&client_secret=\(secretkey)&v=20191104&limit=1"
         
         guard let url = URL(string: urlStr) else { completionHandler(.failure(AppError.badURL))

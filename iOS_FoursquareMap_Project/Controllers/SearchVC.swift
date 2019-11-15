@@ -6,6 +6,8 @@ class SearchVC: UIViewController {
     
     private var venues = [Venue]() { didSet { drawAnnotationsOnMap(venues: venues) } }
     
+    private var images = [Image]()
+    
     //MARK: MAPVIEW FUNCTIONALITY
     private func drawAnnotationsOnMap(venues: [Venue]) {
         let annotations = self.mapView.annotations
@@ -66,7 +68,6 @@ class SearchVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
         loadSubViews()
-        
         searchBar.delegate = self
         locationManager.delegate = self
         locationAuthorization()
@@ -80,12 +81,27 @@ class SearchVC: UIViewController {
             switch result {
             case .success(let venuesFromOnline):
                 self.venues = venuesFromOnline!
-                dump(self.venues)
+                self.loadImages(venues: self.venues)
+                dump(self.images)
             case .failure(let error):
                 print("Could not load venues: \(error)")
             }
         }
     }
+    
+    private func loadImages(venues: [Venue]) {
+           
+           venues.forEach { (venue) in
+               ImageAPIHelper.manager.getPictureURL(venueID: venue.id ?? "") { (result) in
+                   switch result {
+                   case .success(let imageFromFSQ):
+                        self.images.append(imageFromFSQ)
+                   case .failure(let error):
+                       print("Could not get Image URL: \(error)")
+                   }
+               }
+           }
+       }
     
     private func loadSubViews() {
         view.addSubview(searchBar)

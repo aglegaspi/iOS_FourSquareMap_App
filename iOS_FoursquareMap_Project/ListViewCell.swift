@@ -9,6 +9,8 @@
 import UIKit
 
 class ListViewCell: UITableViewCell {
+    //TO-DO make cell look pretty!
+    
     //MARK: VIEWS
     lazy var venueImage: UIImageView = {
         let imageView = UIImageView()
