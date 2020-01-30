@@ -9,32 +9,35 @@
 import UIKit
 
 class ListViewCell: UITableViewCell {
-    //TO-DO make cell look pretty!
     
     //MARK: VIEWS
     lazy var venueImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .center
         return imageView
     }()
     
     lazy var venueName: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 16, weight: .black)
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     lazy var venueAddress: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
+    
+    //MARK: INITIALIZERS
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: "PodcastCell")
+        super.init(style: style, reuseIdentifier: "VenueCell")
         setupVenueImage()
         setupVenueName()
         setupVenueAddress()
@@ -50,7 +53,7 @@ class ListViewCell: UITableViewCell {
         venueImage.translatesAutoresizingMaskIntoConstraints =  false
         NSLayoutConstraint.activate(
             [venueImage.heightAnchor.constraint(equalTo: self.heightAnchor),
-             venueImage.widthAnchor.constraint(equalToConstant: 100),
+             venueImage.widthAnchor.constraint(equalToConstant: 50),
              venueImage.leadingAnchor.constraint(equalTo: self.leadingAnchor)])
     }
     

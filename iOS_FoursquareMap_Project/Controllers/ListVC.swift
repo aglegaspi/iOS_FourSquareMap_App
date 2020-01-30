@@ -62,8 +62,10 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.venueImage.image = UIImage(systemName: "location")
         cell.venueName.text = venue.name
-        cell.venueAddress.text = venue.location?.address
         
+        if let venueAddress = venue.location {
+            cell.venueAddress.text = "\(venueAddress.address ?? "Address Not Listed"), \(venueAddress.city ?? "City Name Not Listed"), \(venueAddress.state ?? "State Not Listed")"
+        }
         return cell
         
     }
