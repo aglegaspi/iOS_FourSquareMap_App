@@ -65,6 +65,16 @@ class SearchVC: UIViewController {
         return map
     }()
     
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        var cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.isHidden = true
+        cv.backgroundColor = .clear
+        //cv.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        return cv
+    }()
     
     
     //MARK: LIFECYCLES
@@ -74,6 +84,7 @@ class SearchVC: UIViewController {
         loadSubViews()
         searchBar.delegate = self
         locationManager.delegate = self
+        collectionView.delegate = self
         locationAuthorization()
         loadConstraints()
         
@@ -89,7 +100,9 @@ class SearchVC: UIViewController {
             case .success(let venuesFromOnline):
                 self.venues = venuesFromOnline!
                 self.loadImages(venues: self.venues)
-                dump(self.images)
+                
+                //TO-DO: LOAD COLLECTION VIEW
+                
             case .failure(let error):
                 print("Could not load venues: \(error)")
             }
@@ -115,6 +128,7 @@ class SearchVC: UIViewController {
         view.addSubview(listButton)
         view.addSubview(locationSearchBar)
         view.addSubview(mapView)
+        view.addSubview(collectionView)
     }
     
     private func loadConstraints() {
@@ -122,6 +136,7 @@ class SearchVC: UIViewController {
         constrainListButton()
         constrainLocationSearchBar()
         constrainMapView()
+        constrainCollectionView()
     }
     
     private func locationAuthorization() {
@@ -178,6 +193,16 @@ class SearchVC: UIViewController {
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    private func constrainCollectionView() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -110),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            collectionView.heightAnchor.constraint(equalToConstant: 100),
+            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
     
@@ -263,6 +288,15 @@ extension SearchVC: UISearchBarDelegate {
             }
         }
     }
+
+}
+
+
+
+extension SearchVC: UICollectionViewDelegate {
     
+}
+
+extension SearchVC: UICollectionViewDelegateFlowLayout {
     
 }
