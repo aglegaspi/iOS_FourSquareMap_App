@@ -256,7 +256,10 @@ extension SearchVC: UISearchBarDelegate {
                 
                 self.mapView.setRegion(coordinateRegion, animated: true)
                 
-                self.loadVenues(query: self.searchBar.text!, lat: lat, long: long)
+                guard let userInputForVenueName = self.searchBar.text else { return }
+                let formattedVenueName = userInputForVenueName.replacingOccurrences(of: " ", with: "+")
+                
+                self.loadVenues(query: formattedVenueName, lat: lat, long: long)
             }
         }
     }
