@@ -60,7 +60,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as? ListViewCell else { return UITableViewCell() }
         
-        cell.venueImage.image = UIImage(named: "food")
+        cell.venueImage.image = UIImage(systemName: "location")
         cell.venueName.text = venue.name
         cell.venueAddress.text = venue.location?.address
         
