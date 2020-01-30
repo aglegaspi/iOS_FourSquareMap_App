@@ -25,7 +25,7 @@ class ListViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var venueCategory: UILabel = {
+    lazy var venueAddress: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
@@ -35,9 +35,9 @@ class ListViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "PodcastCell")
-        setupPodcastImageView()
-        setupTitleLabel()
-        setupHostLabel()
+        setupVenueImage()
+        setupVenueName()
+        setupVenueAddress()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,16 +45,16 @@ class ListViewCell: UITableViewCell {
     }
     
     //MARK: CONSTRAINTS
-    private func setupPodcastImageView() {
+    private func setupVenueImage() {
         addSubview(venueImage)
         venueImage.translatesAutoresizingMaskIntoConstraints =  false
         NSLayoutConstraint.activate(
             [venueImage.heightAnchor.constraint(equalTo: self.heightAnchor),
-             venueImage.widthAnchor.constraint(equalTo: venueImage.widthAnchor),
+             venueImage.widthAnchor.constraint(equalToConstant: 100),
              venueImage.leadingAnchor.constraint(equalTo: self.leadingAnchor)])
     }
     
-    private func setupTitleLabel() {
+    private func setupVenueName() {
         let padding: CGFloat = 16
         addSubview(venueName)
         venueName.translatesAutoresizingMaskIntoConstraints = false
@@ -64,13 +64,13 @@ class ListViewCell: UITableViewCell {
              venueName.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)])
     }
     
-    private func setupHostLabel() {
+    private func setupVenueAddress() {
         let padding: CGFloat = 16
-        addSubview(venueCategory)
-        venueCategory.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(venueAddress)
+        venueAddress.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [venueCategory.leadingAnchor.constraint(equalTo: venueName.leadingAnchor),
-             venueCategory.topAnchor.constraint(equalTo: venueName.bottomAnchor),
-             venueCategory.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding)])
+            [venueAddress.leadingAnchor.constraint(equalTo: venueName.leadingAnchor),
+             venueAddress.topAnchor.constraint(equalTo: venueName.bottomAnchor),
+             venueAddress.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding)])
     }
 }

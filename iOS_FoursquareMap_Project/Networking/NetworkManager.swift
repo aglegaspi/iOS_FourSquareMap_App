@@ -19,7 +19,8 @@ class NetworkManager {
     func performDataTask(withUrl url: URL,
                          andHTTPBody body: Data? = nil,
                          andMethod httpMethod: HTTPMethod,
-                         completionHandler: @escaping ((Result<Data, AppError>) -> ())) {
+                         completionHandler: @escaping ((Result<Data, AppError>) -> ()) ) {
+        
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         request.httpBody = body

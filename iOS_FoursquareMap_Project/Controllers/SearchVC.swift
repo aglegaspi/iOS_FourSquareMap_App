@@ -4,7 +4,11 @@ import CoreLocation
 
 class SearchVC: UIViewController {
     
-    private var venues = [Venue]() { didSet { drawAnnotationsOnMap(venues: venues) } }
+    private var venues = [Venue]() {
+        didSet {
+            drawAnnotationsOnMap(venues: venues)
+        }
+    }
     
     private var images = [Image]()
     
@@ -66,12 +70,15 @@ class SearchVC: UIViewController {
     //MARK: LIFECYCLES
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
+        view.backgroundColor = .white
         loadSubViews()
         searchBar.delegate = self
         locationManager.delegate = self
         locationAuthorization()
         loadConstraints()
+        
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -90,18 +97,18 @@ class SearchVC: UIViewController {
     }
     
     private func loadImages(venues: [Venue]) {
-           
-           venues.forEach { (venue) in
-               ImageAPIHelper.manager.getPictureURL(venueID: venue.id ?? "") { (result) in
-                   switch result {
-                   case .success(let imageFromFSQ):
-                        self.images.append(imageFromFSQ)
-                   case .failure(let error):
-                       print("Could not get Image URL: \(error)")
-                   }
-               }
-           }
-       }
+        
+        venues.forEach { (venue) in
+            ImageAPIHelper.manager.getPictureURL(venueID: venue.id ?? "") { (result) in
+                switch result {
+                case .success(let imageFromFSQ):
+                    self.images.append(imageFromFSQ)
+                case .failure(let error):
+                    print("Could not get Image URL: \(error)")
+                }
+            }
+        }
+    }
     
     private func loadSubViews() {
         view.addSubview(searchBar)
@@ -214,6 +221,7 @@ extension SearchVC: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
     

@@ -24,7 +24,7 @@ struct ImageAPIHelper {
             switch result {
             case .success(let data):
                 let photoInfo = Image.getPhoto(from: data)
-                completionHandler(.success(photoInfo!))
+                completionHandler(.success(photoInfo.unsafelyUnwrapped))
             case .failure(let error):
                 completionHandler(.failure(.other(rawError: error)))
                 
