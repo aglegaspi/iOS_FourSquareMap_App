@@ -12,12 +12,11 @@ class CollectionsVC: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
         
-        var cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.isHidden = true
+        var cv = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        //cv.isHidden = false
         cv.backgroundColor = .clear
-        //cv.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         return cv
     }()
 
@@ -26,6 +25,8 @@ class CollectionsVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         view.backgroundColor = .purple
+        view.addSubview(collectionView)
+        //constrainCollectionView()
     }
     
     
@@ -48,11 +49,25 @@ extension CollectionsVC: UICollectionViewDelegate { }
 extension CollectionsVC: UICollectionViewDelegateFlowLayout { }
 
 extension CollectionsVC: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 20
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+       var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath as IndexPath)
+
+       cell.backgroundColor = UIColor.green
+       return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 150, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 25, bottom: 5, right: 25)
     }
 }
+
