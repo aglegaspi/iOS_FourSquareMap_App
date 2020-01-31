@@ -21,10 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // TAB BAR CONTROLLER
         let search = SearchVC()
-        search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "gear"), tag: 0)
+        search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass.circle"), tag: 0)
         
         let collections = CollectionsVC()
-        collections.tabBarItem = UITabBarItem(title: "Collections", image: UIImage(systemName: "gear"), tag: 1)
+        collections.tabBarItem = UITabBarItem(title: "Collections", image: UIImage(systemName: "folder"), tag: 1)
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [search,collections]
