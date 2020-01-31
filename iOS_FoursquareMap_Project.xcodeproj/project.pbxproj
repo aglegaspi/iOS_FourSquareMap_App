@@ -78,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC38355423E468C800762FE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC413744237B908E0069C5F5 /* ListViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EC41373B237B41220069C5F5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +131,7 @@
 				EC413737237B400B0069C5F5 /* Secrets.swift */,
 				ECC05EB7237373A10015315A /* AppDelegate.swift */,
 				ECC05EB9237373A10015315A /* SceneDelegate.swift */,
-				EC413744237B908E0069C5F5 /* ListViewCell.swift */,
+				EC38355423E468C800762FE6 /* Views */,
 				EC41373B237B41220069C5F5 /* Networking */,
 				EC8077342379F53D003B6134 /* Models */,
 				ECC05EDD237377C90015315A /* Controllers */,
