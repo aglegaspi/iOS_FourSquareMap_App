@@ -32,18 +32,14 @@ class CollectionsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .purple
+        view.addSubviews(navBar, collectionView)
+        confifureCollectionView()
+    }
+    
+    private func confifureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        view.backgroundColor = .purple
-        addSubViews()
-    }
-    
-    private func addSubViews() {
-        view.addSubview(navBar)
-        view.addSubview(collectionView)
-    }
-    
-    private func constrainCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: navBar.bottomAnchor),
@@ -61,11 +57,7 @@ class CollectionsVC: UIViewController {
     
 }
 
-extension CollectionsVC: UICollectionViewDelegate { }
-
-extension CollectionsVC: UICollectionViewDelegateFlowLayout { }
-
-extension CollectionsVC: UICollectionViewDataSource {
+extension CollectionsVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20

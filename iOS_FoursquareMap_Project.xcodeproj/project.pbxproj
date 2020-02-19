@@ -49,7 +49,7 @@
 		EC38357923E75FFD00762FE6 /* FSCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCollection.swift; sourceTree = "<group>"; };
 		EC38357B23E761DA00762FE6 /* CollectionPersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPersistenceHelper.swift; sourceTree = "<group>"; };
 		EC38357D23E7622D00762FE6 /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
-		EC413737237B400B0069C5F5 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		EC413737237B400B0069C5F5 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = ../Secrets.swift; sourceTree = "<group>"; };
 		EC413739237B40720069C5F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		EC41373C237B412F0069C5F5 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		EC41373E237B42B60069C5F5 /* VenueAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueAPIHelper.swift; sourceTree = "<group>"; };
@@ -96,6 +96,18 @@
 				EC25190A23FD549E009C8E93 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EC25190C23FD55A7009C8E93 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				ECC05EB9237373A10015315A /* SceneDelegate.swift */,
+				ECC05EB7237373A10015315A /* AppDelegate.swift */,
+				ECC05EC2237373A20015315A /* LaunchScreen.storyboard */,
+				ECC05EC0237373A20015315A /* Assets.xcassets */,
+				EC413737237B400B0069C5F5 /* Secrets.swift */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 		EC38355423E468C800762FE6 /* Views */ = {
@@ -153,16 +165,12 @@
 		ECC05EB6237373A10015315A /* iOS_FoursquareMap_Project */ = {
 			isa = PBXGroup;
 			children = (
-				EC25190923FD5487009C8E93 /* Extensions */,
-				EC413737237B400B0069C5F5 /* Secrets.swift */,
-				ECC05EB7237373A10015315A /* AppDelegate.swift */,
-				ECC05EB9237373A10015315A /* SceneDelegate.swift */,
+				EC25190C23FD55A7009C8E93 /* Supports */,
 				EC38355423E468C800762FE6 /* Views */,
 				EC41373B237B41220069C5F5 /* Networking */,
 				EC8077342379F53D003B6134 /* Models */,
 				ECC05EDD237377C90015315A /* Controllers */,
-				ECC05EC0237373A20015315A /* Assets.xcassets */,
-				ECC05EC2237373A20015315A /* LaunchScreen.storyboard */,
+				EC25190923FD5487009C8E93 /* Extensions */,
 				ECC05EC5237373A20015315A /* Info.plist */,
 			);
 			path = iOS_FoursquareMap_Project;
