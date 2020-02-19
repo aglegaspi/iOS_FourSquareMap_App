@@ -14,19 +14,24 @@ class CollectionViewCell: UICollectionViewCell {
     var collectionImage: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(systemName: "list.bullet")
+        imageView.tintColor = .systemBackground
         return imageView
     }()
     
     var collectionLabel: UILabel = {
         var label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .callout)
-        label.text = "Collection Name"
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.text = "Name"
+        label.adjustsFontSizeToFitWidth = true // how it scales to device/view
+        label.minimumScaleFactor = 0.50 // does down to 75% of the size
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemRed
+        backgroundColor = UIColor.systemYellow.withAlphaComponent(0.75)
+        layer.cornerRadius = 20
         addSubviews(collectionImage,collectionLabel)
         configure()
     }
@@ -38,18 +43,18 @@ class CollectionViewCell: UICollectionViewCell {
     private func configure() {
         collectionImage.translatesAutoresizingMaskIntoConstraints = false
         collectionLabel.translatesAutoresizingMaskIntoConstraints = false
-        let padding: CGFloat = 10
+        let padding: CGFloat = 3
         
         NSLayoutConstraint.activate([
-            collectionImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            collectionImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            collectionImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            collectionImage.heightAnchor.constraint(equalToConstant: 100),
+            collectionImage.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
+            collectionImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            collectionImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            collectionImage.heightAnchor.constraint(equalToConstant: 70),
             
-            collectionLabel.topAnchor.constraint(equalTo: collectionImage.bottomAnchor, constant: 12),
-            collectionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            collectionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            collectionLabel.heightAnchor.constraint(equalToConstant: 20)
+            collectionLabel.topAnchor.constraint(equalTo: collectionImage.bottomAnchor, constant: 2),
+            collectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            collectionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            collectionLabel.heightAnchor.constraint(equalToConstant: 15)
         ])
     }
     

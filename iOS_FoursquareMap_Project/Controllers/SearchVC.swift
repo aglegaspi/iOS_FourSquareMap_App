@@ -6,9 +6,8 @@ class SearchVC: UIViewController {
     
     private var venues = [Venue]() {
         didSet {
-            drawAnnotationsOnMap(venues: venues)
-            
             DispatchQueue.main.async {
+                self.drawAnnotationsOnMap(venues: self.venues)
                 self.collectionView.reloadData()
             }
         }
@@ -56,7 +55,7 @@ class SearchVC: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
     
         var cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
@@ -123,18 +122,6 @@ class SearchVC: UIViewController {
         }
     }
     
-    private func loadSubViews() {
-        view.addSubviews(searchBar, listButton, locationSearchBar, mapView, collectionView)
-    }
-    
-    private func configureViews() {
-        configureSearchBar()
-        configureListButton()
-        configureLocationSearchBar()
-        configureMapView()
-        configureCollectionView()
-    }
-    
     private func locationAuthorization() {
         let status = CLLocationManager.authorizationStatus()
         
@@ -149,7 +136,19 @@ class SearchVC: UIViewController {
         }
     }
     
-    //MARK: CONSTRAINTS
+    //MARK: CONFIGURE VIEWS
+    private func loadSubViews() {
+        view.addSubviews(searchBar, listButton, locationSearchBar, mapView, collectionView)
+    }
+    
+    private func configureViews() {
+        configureSearchBar()
+        configureListButton()
+        configureLocationSearchBar()
+        configureMapView()
+        configureCollectionView()
+    }
+    
     private func configureSearchBar() {
         searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -195,14 +194,14 @@ class SearchVC: UIViewController {
     }
     
     private func configureCollectionView() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -75),
-            collectionView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 100),
+            collectionView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -110),
+            collectionView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -10),
+            collectionView.heightAnchor.constraint(equalToConstant: 200),
             collectionView.widthAnchor.constraint(equalTo: mapView.widthAnchor)
         ])
     }
@@ -248,6 +247,8 @@ extension SearchVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
+        self.images.removeAll()
+        self.venues.removeAll()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -300,8 +301,16 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let venue = venues[indexPath.item]
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseID, for: indexPath) as! CollectionViewCell
+        cell.collectionLabel.text = venue.name
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
     }
     
     
