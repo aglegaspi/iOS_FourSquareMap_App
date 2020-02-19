@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Favorites {
+struct FSFavorite: Codable {
     let name: String
     let address: String
     let image: String

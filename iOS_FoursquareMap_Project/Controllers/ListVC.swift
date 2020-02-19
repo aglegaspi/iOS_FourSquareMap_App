@@ -14,7 +14,7 @@ class ListVC: UIViewController {
         didSet { tableView.reloadData() }
     }
     
-    var images: [Image]!
+    var images: [VenuePhoto]!
     
     lazy var tableView: UITableView = {
         var tv = UITableView()

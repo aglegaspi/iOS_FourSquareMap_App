@@ -10,7 +10,7 @@ class SearchVC: UIViewController {
         }
     }
     
-    private var images = [Image]()
+    private var images = [VenuePhoto]()
     
     //MARK: MAPVIEW FUNCTIONALITY
     private func drawAnnotationsOnMap(venues: [Venue]) {
@@ -102,7 +102,7 @@ class SearchVC: UIViewController {
                 self.loadImages(venues: self.venues)
                 
                 //TO-DO: LOAD COLLECTION VIEW
-                
+                print("loaded venues")
             case .failure(let error):
                 print("Could not load venues: \(error)")
             }
@@ -113,6 +113,7 @@ class SearchVC: UIViewController {
         
         venues.forEach { (venue) in
             ImageAPIHelper.manager.getPictureURL(venueID: venue.id ?? "") { (result) in
+
                 switch result {
                 case .success(let imageFromFSQ):
                     self.images.append(imageFromFSQ)

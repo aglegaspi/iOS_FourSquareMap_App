@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct Collections {
-    let collection: [Favorites]
-    let collectionName: String
+struct FSCollection: Codable {
+    let collections: [FSFavorite]
+    var collectionName: String
+    let collectionImage: String
+    let collectionTip: String
 }
