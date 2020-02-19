@@ -166,10 +166,10 @@
 			isa = PBXGroup;
 			children = (
 				EC25190C23FD55A7009C8E93 /* Supports */,
-				EC38355423E468C800762FE6 /* Views */,
 				EC41373B237B41220069C5F5 /* Networking */,
 				EC8077342379F53D003B6134 /* Models */,
 				ECC05EDD237377C90015315A /* Controllers */,
+				EC38355423E468C800762FE6 /* Views */,
 				EC25190923FD5487009C8E93 /* Extensions */,
 				ECC05EC5237373A20015315A /* Info.plist */,
 			);
