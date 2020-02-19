@@ -70,5 +70,14 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedVenue = self.venues[indexPath.row]
+        
+        let venueDetailVC = VenueDetailVC()
+        venueDetailVC.venue = selectedVenue
+        
+        present(venueDetailVC, animated: true)
+    }
+    
     
 }

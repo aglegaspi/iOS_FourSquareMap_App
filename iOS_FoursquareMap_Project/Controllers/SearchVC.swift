@@ -12,8 +12,9 @@ class SearchVC: UIViewController {
             }
         }
     }
-    
+        
     private var images = [VenuePhoto]()
+    
     private let locationManager = CLLocationManager()
     let searchRadius: CLLocationDistance = 2000
     var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442) {
@@ -73,12 +74,6 @@ class SearchVC: UIViewController {
         configureViews()
         
         locationAuthorization()
-        configureTapGesture()
-    }
-    
-    private func configureTapGesture() {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-               view.addGestureRecognizer(tap)
     }
     
     //MARK: MAPVIEW FUNCTIONALITY
@@ -138,7 +133,8 @@ class SearchVC: UIViewController {
     
     //MARK: CONFIGURE VIEWS
     private func loadSubViews() {
-        view.addSubviews(searchBar, listButton, locationSearchBar, mapView, collectionView)
+        view.addSubviews(searchBar, listButton, locationSearchBar, mapView)
+        mapView.addSubview(collectionView)
     }
     
     private func configureViews() {
@@ -296,6 +292,7 @@ extension SearchVC: UISearchBarDelegate {
 
 
 extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return venues.count
     }
@@ -311,6 +308,17 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("tapped cv item")
+        
+        let selectedVenue = self.venues[indexPath.item]
+        
+        let venueDetailVC = VenueDetailVC()
+        venueDetailVC.venue = selectedVenue
+        
+        present(venueDetailVC, animated: true)
     }
     
     

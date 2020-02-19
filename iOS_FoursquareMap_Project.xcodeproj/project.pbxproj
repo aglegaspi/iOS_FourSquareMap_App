@@ -30,6 +30,7 @@
 		ECC05ECF237373A20015315A /* iOS_FoursquareMap_ProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05ECE237373A20015315A /* iOS_FoursquareMap_ProjectTests.swift */; };
 		ECC05EDA237377980015315A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05ED9237377980015315A /* SearchVC.swift */; };
 		ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EDB237377B80015315A /* CollectionsVC.swift */; };
+		ECEEFE4A23FD9DD80089FE3D /* VenueDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		ECC05ED0237373A20015315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECC05ED9237377980015315A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		ECC05EDB237377B80015315A /* CollectionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsVC.swift; sourceTree = "<group>"; };
+		ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,9 +190,10 @@
 		ECC05EDD237377C90015315A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				ECC05ED9237377980015315A /* SearchVC.swift */,
 				ECC05EDB237377B80015315A /* CollectionsVC.swift */,
 				EC413742237B8B330069C5F5 /* ListVC.swift */,
+				ECC05ED9237377980015315A /* SearchVC.swift */,
+				ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				EC38357C23E761DA00762FE6 /* CollectionPersistenceHelper.swift in Sources */,
 				EC38355623E4699500762FE6 /* CollectionViewCell.swift in Sources */,
 				EC41373A237B40720069C5F5 /* NetworkManager.swift in Sources */,
+				ECEEFE4A23FD9DD80089FE3D /* VenueDetailVC.swift in Sources */,
 				EC38357A23E75FFD00762FE6 /* FSCollection.swift in Sources */,
 				EC41373D237B412F0069C5F5 /* AppError.swift in Sources */,
 				EC41374B237C86BE0069C5F5 /* VenuePhoto.swift in Sources */,
