@@ -38,12 +38,15 @@ class VenueDetailVC: UIViewController {
         view.backgroundColor = .systemBackground
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(dismissVC))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToCollection))
         navigationItem.rightBarButtonItem = addButton
     }
     
-    @objc func dismissVC() {
-        print("make me add this to a collection")
+    @objc func addToCollection() {
+        
+        let createaddcollectionvc = CreateAddToCollectionVCViewController()
+        createaddcollectionvc.venueToAdd = self.venue
+        navigationController?.pushViewController(createaddcollectionvc, animated: true)
     }
     
     private func configureVenueDetailImage() {

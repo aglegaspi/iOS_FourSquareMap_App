@@ -35,7 +35,7 @@ struct CollectionPersistenceHelper {
         }
         
     }
-    private let persistenceHelper = PersistenceHelper<FSCollection>(fileName: "venueCollection.plist")
+    private let persistenceHelper = PersistenceHelper<FSCollection>(fileName: "FSCollections.plist")
     
     private init() {}
 }
