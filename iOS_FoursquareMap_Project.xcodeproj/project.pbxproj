@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC25190B23FD549E009C8E93 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC25190A23FD549E009C8E93 /* UIView+Ext.swift */; };
 		EC38355623E4699500762FE6 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38355523E4699500762FE6 /* CollectionViewCell.swift */; };
 		EC38357823E75F9C00762FE6 /* FSFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38357723E75F9C00762FE6 /* FSFavorite.swift */; };
 		EC38357A23E75FFD00762FE6 /* FSCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38357923E75FFD00762FE6 /* FSCollection.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC25190A23FD549E009C8E93 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		EC38355523E4699500762FE6 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		EC38357723E75F9C00762FE6 /* FSFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSFavorite.swift; sourceTree = "<group>"; };
 		EC38357923E75FFD00762FE6 /* FSCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCollection.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC25190923FD5487009C8E93 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC25190A23FD549E009C8E93 /* UIView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		EC38355423E468C800762FE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +153,7 @@
 		ECC05EB6237373A10015315A /* iOS_FoursquareMap_Project */ = {
 			isa = PBXGroup;
 			children = (
+				EC25190923FD5487009C8E93 /* Extensions */,
 				EC413737237B400B0069C5F5 /* Secrets.swift */,
 				ECC05EB7237373A10015315A /* AppDelegate.swift */,
 				ECC05EB9237373A10015315A /* SceneDelegate.swift */,
@@ -288,6 +299,7 @@
 				EC41373D237B412F0069C5F5 /* AppError.swift in Sources */,
 				EC41374B237C86BE0069C5F5 /* VenuePhoto.swift in Sources */,
 				EC413743237B8B330069C5F5 /* ListVC.swift in Sources */,
+				EC25190B23FD549E009C8E93 /* UIView+Ext.swift in Sources */,
 				EC38357E23E7622D00762FE6 /* PersistenceHelper.swift in Sources */,
 				EC413749237C861B0069C5F5 /* ImageAPIClient.swift in Sources */,
 				ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */,

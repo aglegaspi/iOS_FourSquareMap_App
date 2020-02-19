@@ -112,7 +112,7 @@ class SearchVC: UIViewController {
     private func loadImages(venues: [Venue]) {
         
         venues.forEach { (venue) in
-            ImageAPIHelper.manager.getPictureURL(venueID: venue.id ?? "") { (result) in
+            ImageAPIHelper.manager.getVenueImageURL(venueID: venue.id ?? "") { (result) in
 
                 switch result {
                 case .success(let imageFromFSQ):
