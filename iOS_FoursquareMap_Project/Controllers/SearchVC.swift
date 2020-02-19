@@ -7,35 +7,24 @@ class SearchVC: UIViewController {
     private var venues = [Venue]() {
         didSet {
             drawAnnotationsOnMap(venues: venues)
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
     private var images = [VenuePhoto]()
-    
-    //MARK: MAPVIEW FUNCTIONALITY
-    private func drawAnnotationsOnMap(venues: [Venue]) {
-        let annotations = self.mapView.annotations
-        self.mapView.removeAnnotations(annotations)
-        let updatedAnnotations = venues.map(self.annotationsFromVenue)
-        self.mapView.addAnnotations(updatedAnnotations)
-    }
-    
-    private func annotationsFromVenue(_ venue: Venue) -> MKPointAnnotation {
-        let newAnnotation = MKPointAnnotation()
-        newAnnotation.coordinate = CLLocationCoordinate2D(latitude: venue.location?.lat ?? 40.6782, longitude: venue.location?.lng ?? -73.9442)
-        newAnnotation.title = venue.name
-        return newAnnotation
-    }
-    
     private let locationManager = CLLocationManager()
-    
+    let searchRadius: CLLocationDistance = 2000
     var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442) {
         didSet {
-            self.loadVenues(query: self.searchBar.text ?? "", lat: self.currentLocation.latitude, long: self.currentLocation.latitude)
+            self.loadVenues(query: self.searchBar.text ?? "",
+                            lat: self.currentLocation.latitude,
+                            long: self.currentLocation.latitude)
         }
     }
     
-    let searchRadius: CLLocationDistance = 2000
     
     //MARK: VIEWS
     lazy var searchBar: UISearchBar = {
@@ -68,11 +57,10 @@ class SearchVC: UIViewController {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        
-        var cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.isHidden = true
+    
+        var cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
-        //cv.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        cv.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseID)
         return cv
     }()
     
@@ -81,17 +69,33 @@ class SearchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        loadSubViews()
-        searchBar.delegate = self
-        locationManager.delegate = self
-        collectionView.delegate = self
-        locationAuthorization()
-        loadConstraints()
         
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
+        loadSubViews()
+        configureViews()
+        
+        locationAuthorization()
+        configureTapGesture()
     }
     
+    private func configureTapGesture() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+               view.addGestureRecognizer(tap)
+    }
+    
+    //MARK: MAPVIEW FUNCTIONALITY
+    private func drawAnnotationsOnMap(venues: [Venue]) {
+        let annotations = self.mapView.annotations
+        self.mapView.removeAnnotations(annotations)
+        let updatedAnnotations = venues.map(self.annotationsFromVenue)
+        self.mapView.addAnnotations(updatedAnnotations)
+    }
+    
+    private func annotationsFromVenue(_ venue: Venue) -> MKPointAnnotation {
+        let newAnnotation = MKPointAnnotation()
+        newAnnotation.coordinate = CLLocationCoordinate2D(latitude: venue.location?.lat ?? 40.6782, longitude: venue.location?.lng ?? -73.9442)
+        newAnnotation.title = venue.name
+        return newAnnotation
+    }
     
     //MARK: PRIVATE FUNCTIONS
     private func loadVenues(query: String, lat: Double, long: Double) {
@@ -101,10 +105,7 @@ class SearchVC: UIViewController {
                 self.venues = venuesFromOnline!
                 self.loadImages(venues: self.venues)
                 
-                //TO-DO: LOAD COLLECTION VIEW
-                print("loaded venues")
-            case .failure(let error):
-                print("Could not load venues: \(error)")
+            case .failure(let error): print("Could not load venues: \(error)")
             }
         }
     }
@@ -115,29 +116,23 @@ class SearchVC: UIViewController {
             ImageAPIHelper.manager.getVenueImageURL(venueID: venue.id ?? "") { (result) in
 
                 switch result {
-                case .success(let imageFromFSQ):
-                    self.images.append(imageFromFSQ)
-                case .failure(let error):
-                    print("Could not get Image URL: \(error)")
+                case .success(let imageFromFSQ): self.images.append(imageFromFSQ)
+                case .failure(let error): print("Could not get Image URL: \(error)")
                 }
             }
         }
     }
     
     private func loadSubViews() {
-        view.addSubview(searchBar)
-        view.addSubview(listButton)
-        view.addSubview(locationSearchBar)
-        view.addSubview(mapView)
-        view.addSubview(collectionView)
+        view.addSubviews(searchBar, listButton, locationSearchBar, mapView, collectionView)
     }
     
-    private func loadConstraints() {
-        constrainSearchBar()
-        constrainListButton()
-        constrainLocationSearchBar()
-        constrainMapView()
-        constrainCollectionView()
+    private func configureViews() {
+        configureSearchBar()
+        configureListButton()
+        configureLocationSearchBar()
+        configureMapView()
+        configureCollectionView()
     }
     
     private func locationAuthorization() {
@@ -155,7 +150,8 @@ class SearchVC: UIViewController {
     }
     
     //MARK: CONSTRAINTS
-    private func constrainSearchBar() {
+    private func configureSearchBar() {
+        searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -165,7 +161,7 @@ class SearchVC: UIViewController {
         ])
     }
     
-    private func constrainListButton() {
+    private func configureListButton() {
         listButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -176,7 +172,8 @@ class SearchVC: UIViewController {
         ])
     }
     
-    private func constrainLocationSearchBar() {
+    private func configureLocationSearchBar() {
+        locationManager.delegate = self
         locationSearchBar.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -186,7 +183,7 @@ class SearchVC: UIViewController {
         ])
     }
     
-    private func constrainMapView() {
+    private func configureMapView() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -197,13 +194,16 @@ class SearchVC: UIViewController {
         ])
     }
     
-    private func constrainCollectionView() {
+    private func configureCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -110),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            collectionView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -75),
+            collectionView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor),
             collectionView.heightAnchor.constraint(equalToConstant: 100),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            collectionView.widthAnchor.constraint(equalTo: mapView.widthAnchor)
         ])
     }
     
@@ -211,7 +211,6 @@ class SearchVC: UIViewController {
     @objc func listViewButtonPressed() {
         let listView = ListVC()
         listView.venues = self.venues
-        
         present(listView, animated: true, completion: nil)
     }
     
@@ -286,6 +285,7 @@ extension SearchVC: UISearchBarDelegate {
                 let formattedVenueName = userInputForVenueName.replacingOccurrences(of: " ", with: "+")
                 
                 self.loadVenues(query: formattedVenueName, lat: lat, long: long)
+                
             }
         }
     }
@@ -294,10 +294,15 @@ extension SearchVC: UISearchBarDelegate {
 
 
 
-extension SearchVC: UICollectionViewDelegate {
+extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return venues.count
+    }
     
-}
-
-extension SearchVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseID, for: indexPath) as! CollectionViewCell
+        return cell
+    }
+    
     
 }

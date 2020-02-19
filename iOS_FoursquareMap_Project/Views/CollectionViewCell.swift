@@ -20,12 +20,15 @@ class CollectionViewCell: UICollectionViewCell {
     var collectionLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .callout)
+        label.text = "Collection Name"
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .systemRed
         addSubviews(collectionImage,collectionLabel)
+        configure()
     }
     
     required init?(coder: NSCoder) {
