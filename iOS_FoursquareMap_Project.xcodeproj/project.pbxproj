@@ -31,6 +31,9 @@
 		ECC05EDA237377980015315A /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05ED9237377980015315A /* SearchVC.swift */; };
 		ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC05EDB237377B80015315A /* CollectionsVC.swift */; };
 		ECEEFE4A23FD9DD80089FE3D /* VenueDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */; };
+		ECEEFE4C23FDB93E0089FE3D /* FSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4B23FDB93E0089FE3D /* FSTabBarController.swift */; };
+		ECEEFE4E23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */; };
+		ECEEFE5023FDC5CC0089FE3D /* DisplayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4F23FDC5CC0089FE3D /* DisplayCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		ECC05ED9237377980015315A /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		ECC05EDB237377B80015315A /* CollectionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsVC.swift; sourceTree = "<group>"; };
 		ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailVC.swift; sourceTree = "<group>"; };
+		ECEEFE4B23FDB93E0089FE3D /* FSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FSTabBarController.swift; path = iOS_FoursquareMap_Project/Controllers/FSTabBarController.swift; sourceTree = SOURCE_ROOT; };
+		ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAddToCollectionVCViewController.swift; sourceTree = "<group>"; };
+		ECEEFE4F23FDC5CC0089FE3D /* DisplayCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 			children = (
 				EC413744237B908E0069C5F5 /* ListViewCell.swift */,
 				EC38355523E4699500762FE6 /* CollectionViewCell.swift */,
+				ECEEFE4F23FDC5CC0089FE3D /* DisplayCollectionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,8 +199,10 @@
 			children = (
 				ECC05EDB237377B80015315A /* CollectionsVC.swift */,
 				EC413742237B8B330069C5F5 /* ListVC.swift */,
+				ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */,
 				ECC05ED9237377980015315A /* SearchVC.swift */,
 				ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */,
+				ECEEFE4B23FDB93E0089FE3D /* FSTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECEEFE5023FDC5CC0089FE3D /* DisplayCollectionCell.swift in Sources */,
 				EC413745237B908E0069C5F5 /* ListViewCell.swift in Sources */,
 				EC41373F237B42B60069C5F5 /* VenueAPIHelper.swift in Sources */,
 				ECC05EDA237377980015315A /* SearchVC.swift in Sources */,
@@ -306,6 +316,7 @@
 				EC38357C23E761DA00762FE6 /* CollectionPersistenceHelper.swift in Sources */,
 				EC38355623E4699500762FE6 /* CollectionViewCell.swift in Sources */,
 				EC41373A237B40720069C5F5 /* NetworkManager.swift in Sources */,
+				ECEEFE4C23FDB93E0089FE3D /* FSTabBarController.swift in Sources */,
 				ECEEFE4A23FD9DD80089FE3D /* VenueDetailVC.swift in Sources */,
 				EC38357A23E75FFD00762FE6 /* FSCollection.swift in Sources */,
 				EC41373D237B412F0069C5F5 /* AppError.swift in Sources */,
@@ -314,6 +325,7 @@
 				EC25190B23FD549E009C8E93 /* UIView+Ext.swift in Sources */,
 				EC38357E23E7622D00762FE6 /* PersistenceHelper.swift in Sources */,
 				EC413749237C861B0069C5F5 /* ImageAPIClient.swift in Sources */,
+				ECEEFE4E23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift in Sources */,
 				ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */,
 				ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */,
 				EC38357823E75F9C00762FE6 /* FSFavorite.swift in Sources */,

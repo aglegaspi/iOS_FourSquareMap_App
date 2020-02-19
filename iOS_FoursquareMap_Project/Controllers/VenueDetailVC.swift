@@ -28,18 +28,28 @@ class VenueDetailVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        print("hello")
+        configureViewController()
         view.addSubviews(venueDetailImage, venueDetailName)
         configureVenueDetailImage()
         configureVenueDetailName()
+    }
+    
+    private func configureViewController() {
+        view.backgroundColor = .systemBackground
         
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func dismissVC() {
+        print("make me add this to a collection")
     }
     
     private func configureVenueDetailImage() {
         
         NSLayoutConstraint.activate([
-            venueDetailImage.topAnchor.constraint(equalTo: view.topAnchor),
+            venueDetailImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             venueDetailImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             venueDetailImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             venueDetailImage.heightAnchor.constraint(equalToConstant: 200)

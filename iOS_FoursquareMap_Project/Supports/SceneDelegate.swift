@@ -18,19 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        
-        // TAB BAR CONTROLLER
-        let search = SearchVC()
-        search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass.circle"), tag: 0)
-        
-        let collections = CollectionsVC()
-        collections.tabBarItem = UITabBarItem(title: "Collections", image: UIImage(systemName: "folder"), tag: 1)
-        
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [search,collections]
-        
-        // SET THE ROOT VIEW CONTROLLER
-        window?.rootViewController = tabBarController
+        window?.rootViewController = FSTabBarController()
         window?.makeKeyAndVisible()
     }
 

@@ -35,7 +35,7 @@ class SearchVC: UIViewController {
     
     lazy var listButton: UIButton = {
         var button = UIButton()
-        button.backgroundColor = .systemGray2
+        button.backgroundColor = .systemBackground
         button.setImage(UIImage(named: "listview"), for: .normal)
         button.addTarget(self, action: #selector(listViewButtonPressed), for: .touchDown)
         return button
@@ -68,6 +68,7 @@ class SearchVC: UIViewController {
     //MARK: LIFECYCLES
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor = .white
         
         loadSubViews()
@@ -204,9 +205,9 @@ class SearchVC: UIViewController {
     
     //MARK: OBJC FUNCTIONS
     @objc func listViewButtonPressed() {
-        let listView = ListVC()
-        listView.venues = self.venues
-        present(listView, animated: true, completion: nil)
+        let listvc = ListVC()
+        listvc.venues = self.venues
+        navigationController?.pushViewController(listvc, animated: true)
     }
     
 }
@@ -317,8 +318,7 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         
         let venueDetailVC = VenueDetailVC()
         venueDetailVC.venue = selectedVenue
-        
-        present(venueDetailVC, animated: true)
+        navigationController?.pushViewController(venueDetailVC, animated: true)
     }
     
     

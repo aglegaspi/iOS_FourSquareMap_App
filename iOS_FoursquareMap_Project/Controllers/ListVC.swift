@@ -28,6 +28,15 @@ class ListVC: UIViewController {
         setupTableView()
     }
     
+    private func configureViewController() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
+        navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    @objc func dismissVC() {
+        self.dismiss(animated: true)
+    }
+    
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,8 +84,7 @@ extension ListVC: UITableViewDelegate, UITableViewDataSource {
         
         let venueDetailVC = VenueDetailVC()
         venueDetailVC.venue = selectedVenue
-        
-        present(venueDetailVC, animated: true)
+        navigationController?.pushViewController(venueDetailVC, animated: true)
     }
     
     
