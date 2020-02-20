@@ -10,42 +10,45 @@ import UIKit
 
 class CollectionsVC: UIViewController {
     
-    lazy var navBar: UINavigationBar = {
-        var navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 50))
-        
-        let navItem = UINavigationItem(title: "SomeTitle")
-        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(pressed))
-        navItem.rightBarButtonItem = addItem
-        
-        navBar.setItems([navItem], animated: false)
-        return navBar
-    }()
+    var collections: [FSCollection] = [] {
+        didSet { collectionView.reloadData() }
+    }
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        var cv = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        var cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         //cv.isHidden = false
         cv.backgroundColor = .clear
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
+        cv.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseID)
         return cv
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .purple
-        view.addSubviews(navBar, collectionView)
-        confifureCollectionView()
+        loadCollections()
+        view.backgroundColor = .systemBackground
+        view.addSubviews(collectionView)
+        
+        configureCollectionView()
     }
     
-    private func confifureCollectionView() {
+    private func loadCollections() {
+        do { self.collections = try CollectionPersistenceHelper.manager.getEntries()
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: navBar.bottomAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            collectionView.heightAnchor.constraint(equalToConstant: 100),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
     
@@ -60,14 +63,16 @@ class CollectionsVC: UIViewController {
 extension CollectionsVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return collections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let collection = collections[indexPath.item]
         
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath as IndexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseID, for: indexPath) as! CollectionViewCell
+        cell.collectionImage.image = UIImage(systemName: collection.collectionImage)
+        cell.collectionLabel.text = collection.collectionName
         
-        cell.backgroundColor = UIColor.green
         return cell
     }
     
@@ -75,8 +80,12 @@ extension CollectionsVC: UICollectionViewDataSource, UICollectionViewDelegate, U
         return CGSize(width: 150, height: 150)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 25, bottom: 5, right: 25)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCollection = self.collections[indexPath.row]
+        
+        let collectionlistvc = CollectionListVC()
+        collectionlistvc.venues = selectedCollection
+        navigationController?.pushViewController(collectionlistvc, animated: true)
     }
     
 }

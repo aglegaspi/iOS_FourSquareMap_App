@@ -19,10 +19,10 @@ struct CollectionPersistenceHelper {
         return try persistenceHelper.getObjects()
     }
     
-    func deleteFavorite(with collectionName: String) throws {
+    func deleteCollection(with collectionUID: String) throws {
         do {
             let entries = try getEntries()
-            let newEntries = entries.filter {$0.collectionName != collectionName }
+            let newEntries = entries.filter {$0.collectionUID != collectionUID }
             try persistenceHelper.replace(elements: newEntries)
         }
     }
@@ -35,7 +35,7 @@ struct CollectionPersistenceHelper {
         }
         
     }
-    private let persistenceHelper = PersistenceHelper<FSCollection>(fileName: "FSCollections.plist")
+    private let persistenceHelper = PersistenceHelper<FSCollection>(fileName: "collections.plist")
     
     private init() {}
 }

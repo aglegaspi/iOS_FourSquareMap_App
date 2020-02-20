@@ -26,7 +26,7 @@ class FSTabBarController: UITabBarController {
     func createFavoritesNC() -> UINavigationController {
         let collectionsvc = CollectionsVC()
         collectionsvc.tabBarItem = UITabBarItem(title: "Collections", image: UIImage(systemName: "folder"), tag: 1)
-        collectionsvc.title = "Search"
+        collectionsvc.title = "Collections"
         return UINavigationController(rootViewController: collectionsvc)
     }
     

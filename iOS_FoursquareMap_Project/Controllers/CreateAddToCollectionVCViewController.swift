@@ -11,8 +11,11 @@ import UIKit
 class CreateAddToCollectionVCViewController: UIViewController {
     
     var venueToAdd: Venue!
-    var collections: [FSCollection] = []
-    let padding: CGFloat = 5
+    var collections: [FSCollection] = [] {
+        didSet { displayCollectionView.reloadData() }
+    }
+    let padding: CGFloat = 15
+    var nameOfNewCollection: String = ""
     
     // X TO CLOSE, NAV BAR TITLE , CREATE BUTTON
     
@@ -20,6 +23,7 @@ class CreateAddToCollectionVCViewController: UIViewController {
     lazy var nameForNewCollectionTextField: UITextField = {
         var textfield = UITextField()
         textfield.backgroundColor = .white
+        textfield.textAlignment = .center
         textfield.placeholder = "enter name of collection"
         return textfield
     }()
@@ -36,6 +40,7 @@ class CreateAddToCollectionVCViewController: UIViewController {
     // TEXTVIEW
     lazy var feedbackTextView: UITextView = {
         var textview = UITextView()
+        textview.font = UIFont.systemFont(ofSize: 18)
         return textview
     }()
     
@@ -64,22 +69,42 @@ class CreateAddToCollectionVCViewController: UIViewController {
         configureLeaveFeedbackLabel()
         configureFeedbackTextView()
         configureDisplayCollectionView()
+        loadCollections()
     }
     
     private func configureViewController() {
         view.backgroundColor = .systemPink
         self.title = "Add To / Create Collection"
+        
         let createButton =  UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(addToNewCollection))
         navigationItem.rightBarButtonItem = createButton
     }
+
     
     @objc func addToNewCollection() {
-        print("make a new collection")
+        
+        guard let collectionName = nameForNewCollectionTextField.text,
+            let venueName = venueToAdd.name,
+            let address = venueToAdd.location?.address,
+            let collectionfFeedback = feedbackTextView.text else { return }
+        
+        let newFavorite = FSFavorite(name: venueName, address: address, image: "eye", feedback: "nothing")
+        
+        let newCollection = FSCollection(collectionUID: UUID().uuidString, collections: [newFavorite], collectionName: collectionName, collectionImage: "eye", collectionFeedback: collectionfFeedback)
+        
+        do {
+            try CollectionPersistenceHelper.manager.save(entry: newCollection)
+        } catch {
+            print(error)
+        }
+        
     }
     
-    private func getCollections() {
+    private func loadCollections() {
         do { self.collections = try CollectionPersistenceHelper.manager.getEntries()
-        } catch { print(error) }
+        } catch {
+            print(error)
+        }
     }
     
     private func configureNameForNewCollectionTextField() {
@@ -146,20 +171,21 @@ extension CreateAddToCollectionVCViewController: UICollectionViewDelegate, UICol
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DisplayCollectionCell.reuseID, for: indexPath) as! DisplayCollectionCell
         cell.collectionLabel.text = collection.collectionName
-        
+        cell.collectionImage.image = UIImage(systemName: collection.collectionImage)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        // ADD ITEM TO THIS COLLECTION
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
     }
     
 }
 
 extension CreateAddToCollectionVCViewController: UITextFieldDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(textField.text)
-        return true
-    }
+  
 }

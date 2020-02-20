@@ -34,6 +34,7 @@
 		ECEEFE4C23FDB93E0089FE3D /* FSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4B23FDB93E0089FE3D /* FSTabBarController.swift */; };
 		ECEEFE4E23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */; };
 		ECEEFE5023FDC5CC0089FE3D /* DisplayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE4F23FDC5CC0089FE3D /* DisplayCollectionCell.swift */; };
+		ECEEFE5223FE05480089FE3D /* CollectionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEEFE5123FE05470089FE3D /* CollectionListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		ECEEFE4B23FDB93E0089FE3D /* FSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FSTabBarController.swift; path = iOS_FoursquareMap_Project/Controllers/FSTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAddToCollectionVCViewController.swift; sourceTree = "<group>"; };
 		ECEEFE4F23FDC5CC0089FE3D /* DisplayCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCollectionCell.swift; sourceTree = "<group>"; };
+		ECEEFE5123FE05470089FE3D /* CollectionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */,
 				ECC05ED9237377980015315A /* SearchVC.swift */,
 				ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */,
+				ECEEFE5123FE05470089FE3D /* CollectionListVC.swift */,
 				ECEEFE4B23FDB93E0089FE3D /* FSTabBarController.swift */,
 			);
 			path = Controllers;
@@ -329,6 +332,7 @@
 				ECC05EB8237373A10015315A /* AppDelegate.swift in Sources */,
 				ECC05EDC237377B80015315A /* CollectionsVC.swift in Sources */,
 				EC38357823E75F9C00762FE6 /* FSFavorite.swift in Sources */,
+				ECEEFE5223FE05480089FE3D /* CollectionListVC.swift in Sources */,
 				ECC05EBA237373A10015315A /* SceneDelegate.swift in Sources */,
 				EC413747237C844E0069C5F5 /* ImageHelper.swift in Sources */,
 			);

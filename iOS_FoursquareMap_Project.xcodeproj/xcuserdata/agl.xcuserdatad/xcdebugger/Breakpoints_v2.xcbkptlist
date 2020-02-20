@@ -52,5 +52,144 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "nameForNewCollectionTextField"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900 - b5714ca7c927eedd"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController.nameForNewCollectionTextField.getter : __C.UITextField"
+                  moduleName = "iOS_FoursquareMap_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agl/Documents/pursuit/labs/Unit5/iOS_FoursquareMap_Project/iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "370">
+               </Location>
+               <Location
+                  uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900 - 4a964a5b49eae794"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; __C.UITextField in iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController.nameForNewCollectionTextField.getter : __C.UITextField"
+                  moduleName = "iOS_FoursquareMap_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agl/Documents/pursuit/labs/Unit5/iOS_FoursquareMap_Project/iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900 - 69bbda37da58c2d1"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController.nameForNewCollectionTextField.setter : __C.UITextField"
+                  moduleName = "iOS_FoursquareMap_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agl/Documents/pursuit/labs/Unit5/iOS_FoursquareMap_Project/iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900 - a2031b866c63bbc2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController.nameForNewCollectionTextField.modify : __C.UITextField"
+                  moduleName = "iOS_FoursquareMap_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agl/Documents/pursuit/labs/Unit5/iOS_FoursquareMap_Project/iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900 - 40f03e5292acb783"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController.nameForNewCollectionTextField.modify : __C.UITextField with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "iOS_FoursquareMap_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agl/Documents/pursuit/labs/Unit5/iOS_FoursquareMap_Project/iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900 - 60a12029dc239546"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController"
+                  moduleName = "iOS_FoursquareMap_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agl/Documents/pursuit/labs/Unit5/iOS_FoursquareMap_Project/iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "806">
+               </Location>
+               <Location
+                  uuid = "B9FEF6D9-DBD9-43E3-B7C6-722448BA3900 - 13cb7b517ed5fc80"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;iOS_FoursquareMap_Project.CreateAddToCollectionVCViewController&gt;"
+                  moduleName = "iOS_FoursquareMap_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/agl/Documents/pursuit/labs/Unit5/iOS_FoursquareMap_Project/iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "743">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4BDB3449-11A1-4ED3-AEA6-D77702CD4380"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOS_FoursquareMap_Project/Controllers/CreateAddToCollectionVCViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "loadCollections()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
