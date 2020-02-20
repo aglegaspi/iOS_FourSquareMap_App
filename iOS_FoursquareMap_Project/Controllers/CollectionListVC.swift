@@ -30,13 +30,24 @@ class CollectionListVC: UIViewController {
         configureTableView()
     }
     
-    private func configureViewController() {
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissVC))
-        navigationItem.rightBarButtonItem = doneButton
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
-    @objc func dismissVC() {
-        self.dismiss(animated: true)
+    private func configureViewController() {
+        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteCollection))
+        navigationItem.rightBarButtonItem = trashButton
+    }
+    
+    @objc func deleteCollection() {
+       
+        do {
+            try CollectionPersistenceHelper.manager.deleteCollection(with: self.venues.collectionUID)
+            
+            
+        } catch {
+            print(error)
+        }
     }
     
     private func configureTableView() {

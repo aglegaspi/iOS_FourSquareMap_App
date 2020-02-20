@@ -73,7 +73,7 @@ class CreateAddToCollectionVCViewController: UIViewController {
     }
     
     private func configureViewController() {
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .systemBackground
         self.title = "Add To / Create Collection"
         
         let createButton =  UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(addToNewCollection))

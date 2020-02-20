@@ -28,8 +28,17 @@ class CollectionsVC: UIViewController {
         loadCollections()
         view.backgroundColor = .systemBackground
         view.addSubviews(collectionView)
-        
         configureCollectionView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        loadCollections()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadCollections()
     }
     
     private func loadCollections() {
