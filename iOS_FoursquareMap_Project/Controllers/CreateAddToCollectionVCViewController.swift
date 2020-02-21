@@ -91,6 +91,7 @@ class CreateAddToCollectionVCViewController: UIViewController {
         let newFavorite = FSFavorite(name: venueName, address: address, image: "eye", feedback: "nothing")
         
         let newCollection = FSCollection(collectionUID: UUID().uuidString, collections: [newFavorite], collectionName: collectionName, collectionImage: "eye", collectionFeedback: collectionfFeedback)
+            loadCollections()
         
         do {
             try CollectionPersistenceHelper.manager.save(entry: newCollection)
@@ -177,6 +178,22 @@ extension CreateAddToCollectionVCViewController: UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // ADD ITEM TO THIS COLLECTION
+        var collection = collections[indexPath.item]
+        
+        guard let name = venueToAdd.name,
+            let address = venueToAdd.location?.address else { return }
+        let newFavorite = FSFavorite(name: name, address: address, image: "eye", feedback: "nothing")
+
+        collection.collections.append(newFavorite)
+        
+        do {
+            try CollectionPersistenceHelper.manager.editEntry(editEntry: collection, index: indexPath.item)
+            self.navigationController?.popViewController(animated: true)
+        } catch {
+            print(error)
+        }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

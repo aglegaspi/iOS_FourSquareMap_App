@@ -13,8 +13,10 @@ class CollectionViewCell: UICollectionViewCell {
     
     var collectionImage: UIImageView = {
         var imageView = UIImageView()
-        imageView.image = UIImage(systemName: "list.bullet")
+        imageView.image = UIImage(named: "no_venue_image")
         imageView.tintColor = .systemBackground
+        imageView.layer.cornerRadius = 20
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -43,13 +45,13 @@ class CollectionViewCell: UICollectionViewCell {
     private func configure() {
         collectionImage.translatesAutoresizingMaskIntoConstraints = false
         collectionLabel.translatesAutoresizingMaskIntoConstraints = false
-        let padding: CGFloat = 3
+        let padding: CGFloat = 5
         
         NSLayoutConstraint.activate([
             collectionImage.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
             collectionImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             collectionImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            collectionImage.heightAnchor.constraint(equalToConstant: 70),
+            collectionImage.heightAnchor.constraint(equalToConstant: 60),
             
             collectionLabel.topAnchor.constraint(equalTo: collectionImage.bottomAnchor, constant: 2),
             collectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),

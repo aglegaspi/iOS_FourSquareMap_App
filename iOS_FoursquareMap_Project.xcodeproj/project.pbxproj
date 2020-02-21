@@ -199,11 +199,11 @@
 		ECC05EDD237377C90015315A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				ECC05EDB237377B80015315A /* CollectionsVC.swift */,
-				EC413742237B8B330069C5F5 /* ListVC.swift */,
-				ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */,
 				ECC05ED9237377980015315A /* SearchVC.swift */,
+				ECC05EDB237377B80015315A /* CollectionsVC.swift */,
+				ECEEFE4D23FDC1EA0089FE3D /* CreateAddToCollectionVCViewController.swift */,
 				ECEEFE4923FD9DD80089FE3D /* VenueDetailVC.swift */,
+				EC413742237B8B330069C5F5 /* ListVC.swift */,
 				ECEEFE5123FE05470089FE3D /* CollectionListVC.swift */,
 				ECEEFE4B23FDB93E0089FE3D /* FSTabBarController.swift */,
 			);

@@ -12,8 +12,8 @@ class SearchVC: UIViewController {
             }
         }
     }
-        
-    private var images = [VenuePhoto]()
+    
+    private var venueImagesURLS = [String]()
     
     private let locationManager = CLLocationManager()
     let searchRadius: CLLocationDistance = 2000
@@ -57,7 +57,7 @@ class SearchVC: UIViewController {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-    
+        
         var cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
         cv.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseID)
@@ -95,25 +95,35 @@ class SearchVC: UIViewController {
     //MARK: PRIVATE FUNCTIONS
     private func loadVenues(query: String, lat: Double, long: Double) {
         VenueAPIHelper.manager.getVenues(query: query, lat: lat, long: long) { (result) in
-            switch result {
-            case .success(let venuesFromOnline):
-                self.venues = venuesFromOnline!
-                self.loadImages(venues: self.venues)
-                
-            case .failure(let error): print("Could not load venues: \(error)")
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let venuesFromOnline):
+                    guard let venues = venuesFromOnline else {return}
+                    self.loadImages(venues: venues)
+                    self.venues = venues
+                    
+                case .failure(let error): print("Could not load venues: \(error)")
+                }
             }
+            
         }
     }
     
     private func loadImages(venues: [Venue]) {
         
         venues.forEach { (venue) in
+            
             ImageAPIHelper.manager.getVenueImageURL(venueID: venue.id ?? "") { (result) in
-
-                switch result {
-                case .success(let imageFromFSQ): self.images.append(imageFromFSQ)
-                case .failure(let error): print("Could not get Image URL: \(error)")
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let imageURLFromFSQ):
+                        self.venueImagesURLS.append(imageURLFromFSQ)
+                        var imagestoconvert = imageURLFromFSQ
+                        
+                    case .failure(let error): print("Could not get Image URL: \(error)")
+                    }
                 }
+                
             }
         }
     }
@@ -244,7 +254,7 @@ extension SearchVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
-        self.images.removeAll()
+        self.venueImagesURLS.removeAll()
         self.venues.removeAll()
     }
     
@@ -287,9 +297,8 @@ extension SearchVC: UISearchBarDelegate {
             }
         }
     }
-
+    
 }
-
 
 
 extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -303,6 +312,16 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseID, for: indexPath) as! CollectionViewCell
         cell.collectionLabel.text = venue.name
+        
+        
+//        ImageHelper.shared.convertToUIImage(urlStr: self.venueImagesURLS[indexPath.item]) { result in
+//            switch result {
+//            case .success(let venueImageFromFoursquare):
+//                cell.collectionImage.image = venueImageFromFoursquare
+//            case .failure(_):
+//                print("no image available")
+//            }
+//        }
         
         return cell
     }
