@@ -15,7 +15,7 @@ struct VenueAPIHelper {
     static let manager = VenueAPIHelper()
     
     func getVenues(query: String, lat: Double, long: Double, completion: @escaping (Result<[Venue]?, AppError>) -> Void) {
-        let urlString = "https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&client_id=\(apikey)&client_secret=\(secretkey)&query=\(query)&v=20191104&limit=5"
+        let urlString = "https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&client_id=\(apikey)&client_secret=\(secretkey)&query=\(query)&v=20191104&limit=2"
         
         guard let url = URL(string: urlString) else { fatalError() }
         

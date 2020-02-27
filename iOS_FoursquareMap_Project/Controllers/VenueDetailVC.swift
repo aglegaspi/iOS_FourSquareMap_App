@@ -14,7 +14,7 @@ class VenueDetailVC: UIViewController {
     lazy var venueDetailImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(systemName: "eye")
+        view.image = UIImage(named: "no_venue_image")
         return view
     }()
     

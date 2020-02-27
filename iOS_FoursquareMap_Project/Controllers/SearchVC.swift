@@ -10,10 +10,9 @@ class SearchVC: UIViewController {
                 self.drawAnnotationsOnMap(venues: self.venues)
                 self.collectionView.reloadData()
             }
+            
         }
     }
-    
-    private var venueImagesURLS = [String]()
     
     private let locationManager = CLLocationManager()
     let searchRadius: CLLocationDistance = 2000
@@ -22,9 +21,7 @@ class SearchVC: UIViewController {
             self.loadVenues(query: self.searchBar.text ?? "",
                             lat: self.currentLocation.latitude,
                             long: self.currentLocation.latitude)
-        }
-    }
-    
+        } }
     
     //MARK: VIEWS
     lazy var searchBar: UISearchBar = {
@@ -95,35 +92,11 @@ class SearchVC: UIViewController {
     //MARK: PRIVATE FUNCTIONS
     private func loadVenues(query: String, lat: Double, long: Double) {
         VenueAPIHelper.manager.getVenues(query: query, lat: lat, long: long) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let venuesFromOnline):
-                    guard let venues = venuesFromOnline else {return}
-                    self.loadImages(venues: venues)
-                    self.venues = venues
-                    
-                case .failure(let error): print("Could not load venues: \(error)")
-                }
-            }
-            
-        }
-    }
-    
-    private func loadImages(venues: [Venue]) {
-        
-        venues.forEach { (venue) in
-            
-            ImageAPIHelper.manager.getVenueImageURL(venueID: venue.id ?? "") { (result) in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let imageURLFromFSQ):
-                        self.venueImagesURLS.append(imageURLFromFSQ)
-                        var imagestoconvert = imageURLFromFSQ
-                        
-                    case .failure(let error): print("Could not get Image URL: \(error)")
-                    }
-                }
-                
+            switch result {
+            case .success(let venuesFromOnline):
+                guard let venues = venuesFromOnline else {return}
+                self.venues = venues
+            case .failure(let error): print("Could not load venues: \(error)")
             }
         }
     }
@@ -159,7 +132,6 @@ class SearchVC: UIViewController {
     private func configureSearchBar() {
         searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -169,7 +141,6 @@ class SearchVC: UIViewController {
     
     private func configureListButton() {
         listButton.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             listButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             listButton.leadingAnchor.constraint(equalTo: searchBar.safeAreaLayoutGuide.trailingAnchor),
@@ -181,7 +152,6 @@ class SearchVC: UIViewController {
     private func configureLocationSearchBar() {
         locationManager.delegate = self
         locationSearchBar.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             locationSearchBar.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             locationSearchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -191,7 +161,6 @@ class SearchVC: UIViewController {
     
     private func configureMapView() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: locationSearchBar.bottomAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -204,7 +173,6 @@ class SearchVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -110),
             collectionView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -10),
@@ -229,9 +197,11 @@ extension SearchVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("New locations \(locations)")
     }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("An error occurred: \(error)")
     }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print("Authorization status changed to \(status.rawValue)")
         switch status {
@@ -254,7 +224,6 @@ extension SearchVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
-        self.venueImagesURLS.removeAll()
         self.venues.removeAll()
     }
     
@@ -314,17 +283,29 @@ extension SearchVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         cell.collectionLabel.text = venue.name
         
         
-//        ImageHelper.shared.convertToUIImage(urlStr: self.venueImagesURLS[indexPath.item]) { result in
-//            switch result {
-//            case .success(let venueImageFromFoursquare):
-//                cell.collectionImage.image = venueImageFromFoursquare
-//            case .failure(_):
-//                print("no image available")
-//            }
-//        }
+        ImageAPIHelper.manager.getVenueImageURL(venueID: venue.id!) { (result) in
+            switch result {
+                
+            case .success(let imageURLFromFSQ):
+                
+                ImageHelper.shared.convertToUIImage(urlStr: imageURLFromFSQ) { result in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let venueImageFromFoursquare):
+                            cell.collectionImage.image = venueImageFromFoursquare
+                        case .failure(_): print("no image available")
+                        }
+                    }
+                }
+                    
+            case .failure(let error):
+                    print("Could not get Image URL: \(error)")
+                }
+            }
+            return cell
+        }
         
-        return cell
-    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
